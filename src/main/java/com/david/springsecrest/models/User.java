@@ -35,54 +35,33 @@ public class User extends TimestampAudit {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "names")
+    private String names;
 
     @Column(name = "telephone")
     private String telephone;
+
+    @Column(name = "national_id")
+    private String nationalId;
 
     @JsonIgnore
     @NotBlank
     @Column(name = "password")
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender")
-    private EGender gender;
-
-//    @JoinColumn(name = "profile_image_id")
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    private File profileImage;
-
-    @Column(name = "activation_code")
-    private String activationCode;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private EUserStatus status = EUserStatus.PENDING;
-
-    @JsonIgnore
-    @Column(name = "activation_code_expires_at")
-    private LocalDateTime activationCodeExpiresAt;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     public String getFullName() {
-        return this.firstName + " " + this.lastName;
+        return this.names;
     }
 
-    public User(String email, String firstName, String lastName, String telephone, EGender gender, String password) {
+    public User(String email, String names, String telephone, String nationalId, String password) {
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.names = names;
+        this.nationalId = nationalId;
         this.telephone = telephone;
-        this.gender = gender;
         this.password = password;
     }
 }

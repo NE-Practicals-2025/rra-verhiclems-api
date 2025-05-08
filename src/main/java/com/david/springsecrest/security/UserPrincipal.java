@@ -24,18 +24,14 @@ public class UserPrincipal implements UserDetails {
 
     private String email;
 
-    private String firstName;
-
-    private String lastName;
+    private String names;
 
     private String telephone;
 
-    private EGender gender;
+    private String nationalId;
 
     @JsonIgnore
     private String password;
-
-    private EUserStatus status;
 
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -46,12 +42,10 @@ public class UserPrincipal implements UserDetails {
         return new UserPrincipal(
                 user.getId(),
                 user.getEmail(),
-                user.getFirstName(),
-                user.getLastName(),
+                user.getNames(),
                 user.getTelephone(),
-                user.getGender(),
+                user.getNationalId(),
                 user.getPassword(),
-                user.getStatus(),
                 authorities);
     }
 

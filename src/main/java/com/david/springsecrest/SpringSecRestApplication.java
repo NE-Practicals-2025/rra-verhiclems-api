@@ -25,8 +25,8 @@ public class SpringSecRestApplication {
     @Bean
     public boolean registerRoles() {
         Set<ERole> roles = new HashSet<>();
-        roles.add(ERole.ADMIN);
-        roles.add(ERole.NORMAL);
+        roles.add(ERole.ROLE_ADMIN);
+        roles.add(ERole.ROLE_STANDARD);
 
         for (ERole role : roles) {
             Optional<Role> roleByName = roleRepository.findByName(role);

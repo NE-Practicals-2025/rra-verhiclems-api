@@ -25,12 +25,12 @@ import java.util.Collections;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/users")
-public class UserController {
+@RequestMapping("/api/v1/owners")
+public class OwnerController {
     private final IUserService userService;
     private final IRoleRepository roleRepository;
     private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    public UserController(IUserService userService, IRoleRepository roleRepository) {
+    public OwnerController(IUserService userService, IRoleRepository roleRepository) {
         this.userService = userService;
         this.roleRepository = roleRepository;
     }
@@ -84,6 +84,7 @@ public class UserController {
     public ResponseEntity<ApiResponse> register(@RequestBody @Valid CreateUserDTO dto) {
 
         User user = new User();
+
 
         String encodedPassword = passwordEncoder.encode(dto.getPassword());
         Role role = roleRepository.findByName(dto.getRole()).orElseThrow(

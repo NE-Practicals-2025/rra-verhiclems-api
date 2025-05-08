@@ -34,7 +34,8 @@ public class OpenApiConfig {
                                 ))
                 .info(
                         new Info()
-                                .title("Springboot Project OpenAPI Docs")
-                                .version("1.0.0").description("Spring Boot Project OpenAPI Docs"));
+                                .title("RRA Vehicle Tracking MS ")
+                                .version("1.0.0").description("RRA Vehicle Tracking MS OpenAPI Docs"));
+
     }
 }

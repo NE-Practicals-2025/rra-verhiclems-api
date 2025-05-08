@@ -12,14 +12,11 @@ public class UpdateUserDTO {
     private String email;
 
     @NotBlank
-    private String firstName;
-
-    @NotBlank
-    private String lastName;
+    private String names;
 
     @Pattern(regexp = "[0-9]{12}")
     private String telephone;
 
-    private EGender gender;
+    private EGender nationalId;
 
 }

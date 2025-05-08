@@ -2,18 +2,15 @@ package com.david.springsecrest.services;
 
 
 import com.david.springsecrest.enums.ERole;
-import com.david.springsecrest.enums.EUserStatus;
 import com.david.springsecrest.models.User;
 import com.david.springsecrest.payload.request.UpdateUserDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.io.File;
-import java.util.Optional;
 import java.util.UUID;
 
 
-public interface IUserService {
+public interface IOwnerService {
 
     Page<User> getAll(Pageable pageable);
 
@@ -26,13 +23,8 @@ public interface IUserService {
 
     boolean delete(UUID id);
 
-    Page<User> getAllByRole(Pageable pageable, ERole role);
-
-    Page<User> searchUser(Pageable pageable, String searchKey);
-
-    User getLoggedInUser();
+    Page<User> searchOwner(Pageable pageable, String searchKey);
 
     User getByEmail(String email);
 
-//    Optional<User> findByActivationCode(String verificationCode);
 }
