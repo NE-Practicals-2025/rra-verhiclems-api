@@ -35,7 +35,8 @@ public class OpenApiConfig {
                 .info(
                         new Info()
                                 .title("RRA Vehicle Tracking MS ")
-                                .version("1.0.0").description("RRA Vehicle Tracking MS OpenAPI Docs"));
+                                .version("1.0.0").description("RRA Vehicle Tracking MS OpenAPI Docs")
+                );
 
     }
 }

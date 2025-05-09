@@ -3,6 +3,7 @@ package com.david.springsecrest.helpers;
 import java.security.SecureRandom;
 import java.util.Random;
 
+import com.david.springsecrest.models.Owner;
 import com.david.springsecrest.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,6 +76,17 @@ public class Utility {
             return String.format("User with email '%s' already exists", user.getEmail());
         } else if (message.contains("telephone")) {
             return String.format("User with phone number '%s' already exists", user.getTelephone());
+        }
+        // Add more checks for other unique constraints if necessary
+        return "A unique constraint violation occurred";
+    }
+
+    public static String getConstraintViolationMessage(DataIntegrityViolationException ex, Owner owner) {
+        String message = ex.getMostSpecificCause().getMessage();
+        if (message.contains("nationalId")) {
+            return String.format("Owner with nationalId '%s' already exists", owner.getNationalId());
+        } else if (message.contains("telephone")) {
+            return String.format("Owner with phone number '%s' already exists", owner.getPhoneNumber());
         }
         // Add more checks for other unique constraints if necessary
         return "A unique constraint violation occurred";

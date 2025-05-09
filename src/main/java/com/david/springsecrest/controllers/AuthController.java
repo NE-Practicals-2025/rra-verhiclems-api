@@ -24,7 +24,6 @@ public class AuthController {
     public ResponseEntity<ApiResponse> login(@RequestBody LoginDTO loginDto){
         return ResponseEntity.ok(ApiResponse.success("Successfully Logged in", this.authService.login(loginDto.getEmail(), loginDto.getPassword())));
     }
-
 //    @PostMapping("/forgot-password")
 //    public ResponseEntity<ApiResponse> forgotPassword(@RequestBody ForgotPasswordDTO dto){
 //        this.authService.initiateResetPassword(dto.getEmail());
