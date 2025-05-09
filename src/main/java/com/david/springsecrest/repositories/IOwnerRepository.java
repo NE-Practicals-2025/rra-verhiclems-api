@@ -18,7 +18,6 @@ public interface IOwnerRepository extends JpaRepository<Owner, UUID> {
     Optional<Owner> findById(UUID userID);
 
     Optional<Owner> findByNationalId(String nationalId);
-
 //    Optional<User> findByActivationCode(String activationCode);
 
     @Query("SELECT u FROM Owner u " +

@@ -35,6 +35,13 @@ public class Vehicle extends TimestampAudit {
     @NonNull
     private String Model;
 
+    @Column(name = "price")
+    @NonNull
+    private Double price;
+
     @ManyToOne
     private Owner owner;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Plate plate;
 }

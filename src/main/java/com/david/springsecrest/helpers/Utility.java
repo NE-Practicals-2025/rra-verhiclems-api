@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 import com.david.springsecrest.models.Owner;
+import com.david.springsecrest.models.Plate;
 import com.david.springsecrest.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

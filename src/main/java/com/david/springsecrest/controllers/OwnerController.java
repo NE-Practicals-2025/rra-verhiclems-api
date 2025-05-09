@@ -4,12 +4,10 @@ import com.david.springsecrest.enums.ERole;
 import com.david.springsecrest.exceptions.BadRequestException;
 import com.david.springsecrest.helpers.Constants;
 import com.david.springsecrest.models.Owner;
+import com.david.springsecrest.models.Plate;
 import com.david.springsecrest.models.Role;
 import com.david.springsecrest.models.User;
-import com.david.springsecrest.payload.request.CreateUserDTO;
-import com.david.springsecrest.payload.request.RegisterOwnerDTO;
-import com.david.springsecrest.payload.request.UpdateOwnerDTO;
-import com.david.springsecrest.payload.request.UpdateUserDTO;
+import com.david.springsecrest.payload.request.*;
 import com.david.springsecrest.payload.response.ApiResponse;
 import com.david.springsecrest.repositories.IOwnerRepository;
 import com.david.springsecrest.repositories.IRoleRepository;
@@ -87,5 +85,18 @@ public class OwnerController {
         Owner entity = this.ownerService.create(owner);
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().toString());
         return ResponseEntity.created(uri).body(ApiResponse.success("Owner created successfully", entity));
+    }
+
+    @PostMapping(path = "/register/plateNumber")
+    public ResponseEntity<ApiResponse> registerPlateNumber(@RequestBody @Valid RegisterPlateNumberDTO dto) {
+        Plate entity = this.ownerService.registerPlateNumber(dto.getOwnerId(), dto);
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().toString());
+        return ResponseEntity.created(uri).body(ApiResponse.success("Plate number registered successfully", entity));
+    }
+
+
+    @GetMapping(path = "/plateNumber/{ownerId}")
+    public ResponseEntity<ApiResponse> getPlateNumberByOwnerId(@PathVariable(value = "ownerId") UUID id) {
+        return ResponseEntity.ok(ApiResponse.success("Plate numbers fetched successfully", this.ownerService.getPlateNumbersByOwnerId(id)));
     }
 }
