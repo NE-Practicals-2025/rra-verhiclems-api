@@ -1,6 +1,7 @@
 package com.david.springsecrest.models;
 
 import com.david.springsecrest.audits.TimestampAudit;
+import com.david.springsecrest.enums.EPlateAvailability;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,4 +29,7 @@ public class Plate extends TimestampAudit {
 
     @ManyToOne(targetEntity = Owner.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Owner owner;
+
+    @Enumerated(EnumType.STRING)
+    private EPlateAvailability status;
 }

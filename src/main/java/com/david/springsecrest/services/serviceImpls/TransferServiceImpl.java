@@ -3,8 +3,11 @@ package com.david.springsecrest.services.serviceImpls;
 
 import com.david.springsecrest.exceptions.BadRequestException;
 import com.david.springsecrest.exceptions.ResourceNotFoundException;
+import com.david.springsecrest.models.Transfer;
 import com.david.springsecrest.models.Vehicle;
+import com.david.springsecrest.repositories.ITransferRepository;
 import com.david.springsecrest.repositories.IVehicleRepository;
+import com.david.springsecrest.services.ITransferService;
 import com.david.springsecrest.services.IVehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -12,37 +15,38 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.TreeMap;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class TransferServiceImp implements IVehicleService {
+public class TransferServiceImpl implements ITransferService {
 
-    private final IVehicleRepository vehicleRepository;
+    private final ITransferRepository transferRepository;
 
     @Override
-    public Page<Vehicle> getAll(Pageable pageable) {
-        return this.vehicleRepository.findAll(pageable);
+    public Page<Transfer> getAll(Pageable pageable) {
+        return this.transferRepository.findAll(pageable);
     }
 
     @Override
-    public Vehicle getById(UUID id) {
-        return this.vehicleRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Vehicle", "id", id.toString()));
+    public Transfer getById(UUID id) {
+        return this.transferRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Transfer", "id", id.toString()));
     }
 
     @Override
-    public Vehicle create(Vehicle vehicle) {
+    public Transfer create(Transfer transfer) {
         try {
-            return this.vehicleRepository.save(vehicle);
+            return this.transferRepository.save(transfer);
         } catch (DataIntegrityViolationException ex) {
             throw new BadRequestException("Error Occurred", ex);
         }
     }
     @Override
-    public Vehicle save(Vehicle vehicle) {
+    public Transfer save(Transfer transfer) {
         try {
-            return this.vehicleRepository.save(vehicle);
+            return this.transferRepository.save(transfer);
         } catch (DataIntegrityViolationException ex) {
             throw new BadRequestException("Error Occurred", ex);
         }

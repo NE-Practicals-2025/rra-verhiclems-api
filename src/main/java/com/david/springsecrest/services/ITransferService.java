@@ -1,24 +1,20 @@
 package com.david.springsecrest.services;
 
-import com.david.springsecrest.models.Owner;
-import com.david.springsecrest.models.Plate;
+import com.david.springsecrest.models.Transfer;
 import com.david.springsecrest.models.Vehicle;
-import com.david.springsecrest.payload.request.RegisterPlateNumberDTO;
-import com.david.springsecrest.payload.request.UpdateOwnerDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 
-public interface IVehicleService {
+public interface ITransferService {
 
-    Page<Vehicle> getAll(Pageable pageable);
+    Page<Transfer> getAll(Pageable pageable);
 
-    Vehicle getById(UUID id);
+    Transfer getById(UUID id);
 
-    Vehicle create(Vehicle vehicle);
+    Transfer create(Transfer transfer);
 
-    Vehicle save(Vehicle vehicle);
+    Transfer save(Transfer transfer);
 }

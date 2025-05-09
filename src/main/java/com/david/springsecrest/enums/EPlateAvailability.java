@@ -1,5 +1,5 @@
 package com.david.springsecrest.enums;
 
-public enum EGender {
-    MALE, FEMALE
+public enum EPlateAvailability {
+    IN_USE, AVAILABLE
 }

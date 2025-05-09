@@ -34,6 +34,6 @@ public class Owner extends TimestampAudit {
     @NonNull
     private String address;
 
-    @OneToMany(mappedBy = "owner", targetEntity = Vehicle.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", targetEntity = Vehicle.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Vehicle> vehicles;
 }

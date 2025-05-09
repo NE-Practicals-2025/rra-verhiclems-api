@@ -1,5 +1,7 @@
 package com.david.springsecrest.controllers;
 
+import com.david.springsecrest.enums.EPlateAvailability;
+import com.david.springsecrest.exceptions.BadRequestException;
 import com.david.springsecrest.exceptions.ResourceNotFoundException;
 import com.david.springsecrest.helpers.Constants;
 import com.david.springsecrest.models.Owner;
@@ -59,6 +61,9 @@ public class VehicleController {
 
         Owner owner = this.ownerService.getById(dto.getOwnerId());
         Plate plate = this.plateRepository.findById(dto.getPlateNumberId()).orElseThrow(()-> new ResourceNotFoundException("Plate", "id", dto.getPlateNumberId().toString()));
+        if(plate.getStatus() == EPlateAvailability.IN_USE){
+            throw new BadRequestException("Plate with id "+dto.getPlateNumberId()+" already taken");
+        }
         Vehicle vehicle = new Vehicle();
         vehicle.setOwner(owner);
         vehicle.setModel(dto.getModel());
