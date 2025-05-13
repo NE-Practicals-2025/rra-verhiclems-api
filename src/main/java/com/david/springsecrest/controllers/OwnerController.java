@@ -74,14 +74,7 @@ public class OwnerController {
 
     @PostMapping(path = "/register")
     public ResponseEntity<ApiResponse> register(@RequestBody @Valid RegisterOwnerDTO dto) {
-
-        Owner owner = new Owner();
-
-        owner.setNames(dto.getNames());
-        owner.setAddress(dto.getAddress());
-        owner.setNationalId(dto.getNationalId());
-        owner.setPhoneNumber(dto.getTelephone());
-
+        Owner owner = new Owner(dto.getNationalId(), dto.getTelephone(), dto.getAddress(), dto.getNames());
         Owner entity = this.ownerService.create(owner);
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().toString());
         return ResponseEntity.created(uri).body(ApiResponse.success("Owner created successfully", entity));

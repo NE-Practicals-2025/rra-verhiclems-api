@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 public abstract class TimestampAudit implements Serializable {
     private static final long serialVersionUID = 1L;
 
-
     @CreationTimestamp
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name="created_at")

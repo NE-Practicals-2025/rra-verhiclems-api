@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,4 +37,11 @@ public class Owner extends TimestampAudit {
 
     @OneToMany(mappedBy = "owner", targetEntity = Vehicle.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Vehicle> vehicles;
+
+    public Owner(String nationalId, String phoneNumber, String address, String names) {
+        this.nationalId = nationalId;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.names = names;
+    }
 }

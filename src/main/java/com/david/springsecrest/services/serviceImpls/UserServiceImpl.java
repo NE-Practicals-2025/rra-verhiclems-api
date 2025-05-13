@@ -53,16 +53,6 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
-    @Override
-    public User save(User user) {
-        try {
-            return this.userRepository.save(user);
-        } catch (DataIntegrityViolationException ex) {
-            String errorMessage = Utility.getConstraintViolationMessage(ex, user);
-            throw new BadRequestException(errorMessage, ex);
-        }
-    }
-
 //    @Override
 //    public User update(UUID id, UpdateUserDTO dto) {
 //        User entity = this.userRepository.findById(id).orElseThrow(
@@ -88,15 +78,6 @@ public class UserServiceImpl implements IUserService {
         user.setNames(dto.getNames());
         user.setTelephone(dto.getTelephone());
         return this.userRepository.save(user);
-    }
-
-    @Override
-    public boolean delete(UUID id) {
-        this.userRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("User", "id", id));
-
-        this.userRepository.deleteById(id);
-        return true;
     }
 
     @Override

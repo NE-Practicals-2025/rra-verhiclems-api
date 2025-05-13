@@ -20,11 +20,7 @@ public interface IUserService {
     User getById(UUID id);
 
     User create(User user);
-    User save(User user);
-
     User update(UUID id, UpdateUserDTO dto);
-
-    boolean delete(UUID id);
 
     Page<User> getAllByRole(Pageable pageable, ERole role);
 
